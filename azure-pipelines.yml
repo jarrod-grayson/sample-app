@@ -10,10 +10,34 @@ pool:
   name: Default
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- script: echo Compile
+  displayName: 'Preparation [GIT]'
+
+- script: echo Build
+  displayName: 'Build [MAVEN]'
+
+- script: echo Unit Testing
+  displayName: 'Code Analysis [SONAR]'
+
+- script: echo Environment
+  displayName: 'Deployment [DOCKER]'
+
+- script: echo Application Deployment
+  displayName: 'Staging'
+
+- script: echo Test
+  displayName: 'Prepare Testing'
+
+- script: echo Start Tosca API Tests
+  displayName: 'API Testing'
+
+- script: echo Start Selenium Integration Tests
+  displayName: 'Integration Testing'
+
+- script: echo Start Tosca Funtional UI Tests
+  displayName: 'Functional Regression Testing'
 
 - script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+    echo Start NeoLoad infrastructure
+    echo Execute Performance Tests
+  displayName: 'Performance Testing'
