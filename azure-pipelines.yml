@@ -13,7 +13,7 @@ steps:
 - script: echo Compile
   displayName: 'Preparation [GIT]'
 
-- script: echo Build
+- script: echo Build Sample App
   displayName: 'Build [MAVEN]'
 
 - script: echo Unit Testing
@@ -41,3 +41,6 @@ steps:
     echo Start NeoLoad infrastructure
     echo Execute Performance Tests
   displayName: 'Performance Testing'
+
+- script: echo Publish Artifacts
+  displayName: 'Publish Artifact drop'
