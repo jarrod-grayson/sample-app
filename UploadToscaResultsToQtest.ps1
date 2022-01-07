@@ -6,7 +6,7 @@ $payload = [System.Convert]::ToBase64String($bytes)
 
 $body = @{
  'projectId' = '121052'
- 'testcycle' = '2960863'
+ 'testcycle' = '2960955'
  'result' = $payload
 }
 
