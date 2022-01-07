@@ -31,7 +31,7 @@ steps:
 - task: CmdLine@1
   inputs:
     filename: '"C:\Program Files (x86)\TRICENTIS\Tosca Testsuite\ToscaCommander\ToscaCI\Client\ToscaCIClient.exe"'
-    arguments: '-m distributed -c "C:\Tricentis\Automation\ToscaCI\ConfigAPI.xml" -t junit - r "C:\Tosca_Projects\ToscaCIResults\Results.xml"''     '
+    arguments: '-m local -c "C:\Tricentis\Automation\ToscaCI\ConfigAPI.xml" -t junit - r "C:\Tosca_Projects\ToscaCIResults\Results.xml"''     '
   displayName: 'Run Tosca API Tests'
 
 - task: PowerShell@2
@@ -53,7 +53,7 @@ steps:
 - task: CmdLine@1
   inputs:
     filename: '"C:\Program Files (x86)\TRICENTIS\Tosca Testsuite\ToscaCommander\ToscaCI\Client\ToscaCIClient.exe"'
-    arguments: '-m distributed -c "C:\Tricentis\Automation\ToscaCI\ConfigRegression.xml" -t junit - r "C:\Tosca_Projects\ToscaCIResults\Results.xml"''     '
+    arguments: '-m local -c "C:\Tricentis\Automation\ToscaCI\ConfigRegression.xml" -t junit - r "C:\Tosca_Projects\ToscaCIResults\Results.xml"''     '
   displayName: 'Run Tosca Functional Regression Tests'
 
 - task: PowerShell@2
