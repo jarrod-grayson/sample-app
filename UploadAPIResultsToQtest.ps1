@@ -1,4 +1,4 @@
-$url = 'https://pulse-7.qtestnet.com/webhook/ea99f7b9-7a0a-4dcd-b99d-1a11e7c4c8e3'
+$url = 'https://pulse-7.qtestnet.com/webhook/cebd2a07-ec59-481d-a9c2-49a4f6d4ccd2'
 
 $content = Get-Content "C:\Tosca_Projects\ToscaCIResults\Results.xml" -Raw
 $bytes = [System.Text.Encoding]::ASCII.GetBytes($content)
