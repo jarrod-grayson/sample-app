@@ -36,7 +36,7 @@ steps:
 
 - task: PowerShell@2
   inputs:
-    filePath: "$(System.DefaultWorkingDirectory}/UploadToscaResultsToQtest.ps1"
+    filePath: "$(System.DefaultWorkingDirectory)/UploadToscaResultsToQtest.ps1"
   displayName: 'Upload Tosca API Automation Results to qTest'
 
 - task: PowerShell@2
@@ -47,7 +47,7 @@ steps:
 
 - task: PowerShell@2
   inputs:
-    filePath: "$(System.DefaultWorkingDirectory}/UploadCucumberResultsToQtest.ps1"
+    filePath: "$(System.DefaultWorkingDirectory)/UploadCucumberResultsToQtest.ps1"
   displayName: 'Upload Cucumber Integration Automation Results to qTest'
 
 - task: CmdLine@1
@@ -58,7 +58,7 @@ steps:
 
 - task: PowerShell@2
   inputs:
-    filePath: "$(System.DefaultWorkingDirectory}/UploadToscaResultsToQtest.ps1"
+    filePath: "$(System.DefaultWorkingDirectory)/UploadToscaResultsToQtest.ps1"
   displayName: 'Upload Tosca Functional Regression Automation Results to qTest'
 
 - script: |
