@@ -28,31 +28,38 @@ steps:
 - script: echo Test
   displayName: 'Prepare Testing'
 
-- script: echo Start Tosca API Tests
-  displayName: 'API Testing'
+- task: CmdLine@1
+  inputs:
+    filename: '"C:\Program Files (x86)\TRICENTIS\Tosca Testsuite\ToscaCommander\ToscaCI\Client\ToscaCIClient.exe"'
+    arguments: '-m distributed -c "C:\Tricentis\Automation\ToscaCI\ConfigAPI.xml" -t junit - r "C:\Tosca_Projects\ToscaCIResults\Results.xml"''     '
+  displayName: 'Run Tosca API Tests'
 
-- powershell: |
-   $url = 'https://pulse-7.qtestnet.com/webhook/cebd2a07-ec59-481d-a9c2-49a4f6d4ccd2'
-   
-   $content = Get-Content "C:\Tricentis\Automation\ToscaCI\ToscaCIResults\Results.xml" -Raw
-   $bytes = [System.Text.Encoding]::ASCII.GetBytes($content)
-   $payload = [System.Convert]::ToBase64String($bytes)
-   
-   $body = @{
-    'projectId' = '121052'
-    'testcycle' = '2960863'
-    'result' = $payload
-   }
-   
-   [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-   Invoke-RestMethod -Body $body -Method 'Post' -Uri $url
-  displayName: 'Upload API Automation Results to qTest'
+- task: PowerShell@2
+  inputs:
+    filePath: "$(System.DefaultWorkingDirectory}/UploadToscaResultsToQtest.ps1"
+  displayName: 'Upload Tosca API Automation Results to qTest'
 
-- script: echo Start Selenium Integration Tests
-  displayName: 'Integration Testing'
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: 'mvn test'
+  displayName: 'Run Cucumber Integration Tests'
 
-- script: echo Start Tosca Funtional UI Tests
-  displayName: 'Functional Regression Testing'
+- task: PowerShell@2
+  inputs:
+    filePath: "$(System.DefaultWorkingDirectory}/UploadCucumberResultsToQtest.ps1"
+  displayName: 'Upload Cucumber Integration Automation Results to qTest'
+
+- task: CmdLine@1
+  inputs:
+    filename: '"C:\Program Files (x86)\TRICENTIS\Tosca Testsuite\ToscaCommander\ToscaCI\Client\ToscaCIClient.exe"'
+    arguments: '-m distributed -c "C:\Tricentis\Automation\ToscaCI\ConfigRegression.xml" -t junit - r "C:\Tosca_Projects\ToscaCIResults\Results.xml"''     '
+  displayName: 'Run Tosca Functional Regression Tests'
+
+- task: PowerShell@2
+  inputs:
+    filePath: "$(System.DefaultWorkingDirectory}/UploadToscaResultsToQtest.ps1"
+  displayName: 'Upload Tosca Functional Regression Automation Results to qTest'
 
 - script: |
     echo Start NeoLoad infrastructure
