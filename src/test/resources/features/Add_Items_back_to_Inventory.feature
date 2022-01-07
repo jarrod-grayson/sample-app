@@ -17,13 +17,3 @@ Scenario: Exchanged items should be returned to inventory
     When they exchange the blue garment for a black garment
     Then I should have three blue garments in inventory
     And two black garments in inventory
-    
-Scenario Outline: Eating Cucumbers
-    Given there are <start> cucumbers
-    When I eat <eat> cucumbers
-    Then I should have <left> cucumbers
-
-Examples:
-   | start | eat | left |
-   | 12    | 5   | 7    |
-   | 20    | 5   | 15   |
