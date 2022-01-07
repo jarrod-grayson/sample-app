@@ -31,7 +31,7 @@ steps:
 - script: echo Start Tosca API Tests
   displayName: 'API Testing'
 
-- task: PowerShell@2
+- task: PowerShell@1
   inputs:
     filePath: "$(System.DefaultWorkingDirectory)/UploadAPIResultsToQtest.ps1"
   displayName: 'Upload API Automation Results to qTest'
