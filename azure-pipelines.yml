@@ -31,9 +31,21 @@ steps:
 - script: echo Start Tosca API Tests
   displayName: 'API Testing'
 
-- task: PowerShell@1
-  inputs:
-    filePath: "$(System.DefaultWorkingDirectory)/UploadAPIResultsToQtest.ps1"
+- powershell: |
+   $url = 'https://pulse-7.qtestnet.com/webhook/cebd2a07-ec59-481d-a9c2-49a4f6d4ccd2'
+   
+   $content = Get-Content "C:\Tricentis\Automation\ToscaCI\ToscaCIResults\Results.xml" -Raw
+   $bytes = [System.Text.Encoding]::ASCII.GetBytes($content)
+   $payload = [System.Convert]::ToBase64String($bytes)
+   
+   $body = @{
+    'projectId' = '121052'
+    'testcycle' = '2960863'
+    'result' = $payload
+   }
+   
+   [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+   Invoke-RestMethod -Body $body -Method 'Post' -Uri $url
   displayName: 'Upload API Automation Results to qTest'
 
 - script: echo Start Selenium Integration Tests
