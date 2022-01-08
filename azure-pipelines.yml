@@ -6,9 +6,6 @@
 trigger:
 - main
 
-pool:
-  name: Default
-
 stages:
 - stage: Build
   displayName: Build
