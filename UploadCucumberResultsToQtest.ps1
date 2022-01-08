@@ -1,6 +1,6 @@
 $url = 'https://pulse-7.qtestnet.com/webhook/71df3dfd-2ef5-4c29-8471-e441f806ac1a'
 
-$content = Get-Content "C:\Tosca_Projects\ToscaCIResults\Results.xml" -Raw
+$content = Get-Content "C:\Tricentis\Automation\AzureDevOps\agent\_work\4\s\target\cucumber-report.json" -Raw
 $bytes = [System.Text.Encoding]::ASCII.GetBytes($content)
 $payload = [System.Convert]::ToBase64String($bytes)
 
