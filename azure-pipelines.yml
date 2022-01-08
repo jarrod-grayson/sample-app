@@ -49,8 +49,8 @@ stages:
       - script: echo Unit Testing
         displayName: 'Code Analysis [SONAR]'
 
-- stage: Deploy App
-  displayName: Deploy App
+- stage: Deploy_App
+  displayName: Deploy_App
   jobs:
     - job: Deploy_App
       pool:
@@ -111,8 +111,8 @@ stages:
           arguments: '-project "C:\Tricentis\NeoLoad\NeoLoad Projects\Vehicle_Insurance_Application\Vehicle_Insurance_Application.nlp" -launch scenario_1 -noGUI''     '
         displayName: 'Run NeoLoad Performance Tests'
 
-- stage: Deploy to Staging
-  displayName: Deploy to Staging
+- stage: Deploy_to_Staging
+  displayName: Deploy_to_Staging
   jobs:
     - job: Deploy_to_Staging
       pool:
