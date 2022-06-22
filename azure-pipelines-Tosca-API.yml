@@ -1,0 +1,89 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+stages:
+- stage: Build
+  displayName: Build
+  jobs:
+    - job: Build
+      pool:
+        name: Default
+      steps:
+      - script: echo Compile
+        displayName: 'Preparation [GIT]'
+      #- task: VSBuild@1
+      #  inputs:
+      #    solution: '$(solution)'
+      #    msbuildArgs: >-
+      #      /p:DeployOnBuild=true /p:WebPublishMethod=Package 
+      #      /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true 
+      #      /p:PackageLocation="$(build.artifactStagingDirectory)"
+      #    platform: '$(buildPlatform)'
+      #    configuration: '$(buildConfiguration)'
+
+      #- task: VSTest@2
+      #  inputs:
+      #    platform: '$(buildPlatform)'
+      #    configuration: '$(buildConfiguration)'
+
+      #- task: CopyFiles@2
+      #  inputs:
+      #    SourceFolder: '$(build.sourcesdirectory)/PartsUnlimited-aspnet45/env/'
+      #    Contents: '**/*.json'
+      #    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+      #- task: PublishPipelineArtifact@1
+      #  inputs:
+      #    targetPath: '$(Build.ArtifactStagingDirectory)'
+      #    artifact: 'drop'
+      #    publishLocation: 'pipeline'  
+
+      - script: echo Build Sample App
+        displayName: 'Build [MAVEN]'
+
+      - script: echo Unit Testing
+        displayName: 'Code Analysis [SONAR]'
+
+- stage: Deploy_App
+  displayName: Deploy_App
+  jobs:
+    - job: Deploy_App
+      pool:
+        name: Default
+      steps:
+      - script: echo Environment
+        displayName: 'Deployment [DOCKER]'
+
+      - script: echo Application Deployment
+        displayName: 'Staging'
+
+- stage: Test
+  displayName: Test
+  jobs:
+    - job: Test
+      pool:
+        name: Default
+      steps:
+      - script: echo Test
+        displayName: 'Prepare Testing'
+
+      - task: PowerShell@2
+        inputs:
+          filePath: '$(System.DefaultWorkingDirectory)/tosca_execution_client.ps1'
+          arguments: ' -toscaServerUrl http://localhost:5012 -projectName DEX_User -events [TriServ | API | Car Service] - client_id jFoM6R2JeES2QX-yimEfYg -client_secret yzrpQKziLEqQb-EsK3_tLAcwZU_FiYCEC3BYurGd_g4A'
+        displayName: 'Execute Tosca API Tests via DEX and Upload Results to qTest'
+
+- stage: Deploy_to_Staging
+  displayName: Deploy_to_Staging
+  jobs:
+    - job: Deploy_to_Staging
+      pool:
+        name: Default
+      steps:
+      - script: echo Publish Artifacts
+        displayName: 'Publish Artifact drop'
