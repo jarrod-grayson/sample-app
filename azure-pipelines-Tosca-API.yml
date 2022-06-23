@@ -78,7 +78,7 @@ stages:
           arguments: >
             -toscaServerUrl "http://localhost:5012"
             -projectName "DEX_User"
-            -events "["TriServ | API | Car Service"]"
+            -events "["3a02539f-f9e8-856c-4a85-6dc1060d65e3"]"
             -client_id "jFoM6R2JeES2QX-yimEfYg"
             -client_secret "yzrpQKziLEqQb-EsK3_tLAcwZU_FiYCEC3BYurGd_g4A"
             -creator "AOS API"
