@@ -79,8 +79,8 @@ stages:
             -toscaServerUrl "http://localhost:5012"
             -projectName "DEX_User"
             -eventsConfigFilePath "testEvents.json"
-            -client_id "jFoM6R2JeES2QX-yimEfYg"
-            -client_secret "yzrpQKziLEqQb-EsK3_tLAcwZU_FiYCEC3BYurGd_g4A"
+            -clientId "jFoM6R2JeES2QX-yimEfYg"
+            -clientSecret "yzrpQKziLEqQb-EsK3_tLAcwZU_FiYCEC3BYurGd_g4A"
             -creator "AOS API"
             -debug "true"
         displayName: 'Execute Tosca TestEvent(s) via ToscaExecutionClient and Upload Results to qTest'
