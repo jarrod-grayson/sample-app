@@ -81,7 +81,9 @@ stages:
             -eventsConfigFilePath "testEvents.json"
             -clientId "jFoM6R2JeES2QX-yimEfYg"
             -clientSecret "yzrpQKziLEqQb-EsK3_tLAcwZU_FiYCEC3BYurGd_g4A"
-            -creator "AOS API"
+            -creator "ToscaExecutionClient ADO Pipeline"
+            -resultsFileName "results.xml"
+            -resultsFolderPath "results"
             -debug "true"
         displayName: 'Execute Tosca TestEvent(s) via ToscaExecutionClient and Upload Results to qTest'
 
