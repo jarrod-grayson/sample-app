@@ -90,7 +90,8 @@ stages:
       - task: PublishTestResults@2
         inputs:
           testResultsFormat: 'JUnit'
-          testResultsFiles: 'results\results.xml'
+          searchFolder: '$(System.DefaultWorkingDirectory)'
+          testResultsFiles: '**/results*.xml'
           testRunTitle: 'Publish JUNIT test results'
 
 - stage: Deploy_to_Staging
