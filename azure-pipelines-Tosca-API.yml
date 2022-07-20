@@ -83,15 +83,15 @@ stages:
             -clientSecret "yzrpQKziLEqQb-EsK3_tLAcwZU_FiYCEC3BYurGd_g4A"
             -creator "ToscaExecutionClient ADO Pipeline"
             -resultsFileName "results.xml"
-            -resultsFolderPath "results"
+            -resultsFolderPath "C:/temp/results"
             -debug "true"
         displayName: 'Execute Tosca TestEvent(s) via ToscaExecutionClient and Upload Results to qTest'
 
       - task: PublishTestResults@2
         inputs:
           testResultsFormat: 'JUnit'
-          searchFolder: '$(System.DefaultWorkingDirectory)'
-          testResultsFiles: '**/results*.xml'
+          searchFolder: 'C:/temp/results'
+          testResultsFiles: 'results.xml'
           testRunTitle: 'Publish JUNIT test results'
 
 - stage: Deploy_to_Staging
