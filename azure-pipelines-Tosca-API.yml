@@ -91,7 +91,7 @@ stages:
         inputs:
           testResultsFormat: 'JUnit'
           searchFolder: 'C:/temp/results'
-          testResultsFiles: 'results.xml'
+          testResultsFiles: 'TEST-Calc.CalculatorTests.xml'
           testRunTitle: 'Publish JUNIT test results'
 
 - stage: Deploy_to_Staging
