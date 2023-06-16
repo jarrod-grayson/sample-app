@@ -35,7 +35,7 @@ param(
     [switch]$fetchPartialResults,
     [switch]$fetchResultsOnly,
     [string]$logFolderPath = "logs",
-    [int]$pollingInterval = 60,
+    [int]$pollingInterval = 5,
     [int]$requestTimeout = 180,
     [string]$resultsFileName = "",
     [string]$resultsFolderPath = "results",
