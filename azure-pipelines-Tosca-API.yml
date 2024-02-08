@@ -76,7 +76,7 @@ stages:
         inputs:
           filePath: $(System.DefaultWorkingDirectory)\tosca_execution_client.ps1
           arguments: >
-            -toscaServerUrl "http://localhost:5012"
+            -toscaServerUrl "http://localhost:80"
             -projectName "Tosca_User"
             -eventsConfigFilePath "testEvents.json"
             -clientId "jFoM6R2JeES2QX-yimEfYg"
