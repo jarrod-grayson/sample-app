@@ -14,7 +14,7 @@ Use Tosca Execution Clients:
 
 Integrate with Execution APIs:
 
-    https://documentation.tricentis.com/tosca/1520/en/content/continuous_integration/execution_api_integration.htm
+    https://documentation.tricentis.com/tosca/2420/en/content/continuous_integration/execution_api_integration.htm
 
 Or check out our [GitHub repository](https://github.com/Tricentis/ToscaExecutionClient), where you can perform the following actions
 
