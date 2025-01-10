@@ -6,11 +6,11 @@ The Tosca CI/CD integration allows you to incorporate Tricentis Tosca into your 
 
 Types of Integration:
 
-    https://documentation.tricentis.com/tosca/1520/en/content/continuous_integration/concept.htm
+    https://documentation.tricentis.com/tosca/2420/en/content/continuous_integration/concept.htm
 
 Use Tosca Execution Clients:
 
-    https://documentation.tricentis.com/tosca/1520/en/content/continuous_integration/tosca_execution_clients.htm
+    https://documentation.tricentis.com/tosca/2420/en/content/continuous_integration/tosca_execution_clients.htm
 
 Integrate with Execution APIs:
 
