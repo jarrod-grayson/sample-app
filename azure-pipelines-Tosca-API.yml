@@ -86,13 +86,16 @@ stages:
             -resultsFolderPath "C:/temp/results"
             -debug "true"
         displayName: 'Execute Tosca TestEvent(s) via ToscaExecutionClient and Upload Results to qTest'
+  
+      - task: PowerShell@2
+        inputs:
+          targetType: 'inline'
+          script: 'Get-Content -Path "C:\\temp\\results\\results.xml" | Out-File -FilePath "C:\\temp\\results\\results_encode.xml" -Encoding ASCII'
 
       - task: PublishTestResults@2
+        displayName: 'Publish Test Results C:\temp\results\results.xml'
         inputs:
-          testResultsFormat: 'JUnit'
-          searchFolder: 'C:/temp/results'
-          testResultsFiles: 'TEST-Calc.CalculatorTests.xml'
-          testRunTitle: 'Publish JUNIT test results'
+          testResultsFiles: 'C:\temp\results\results.xml'
 
 - stage: Deploy_to_Staging
   displayName: Deploy_to_Staging
