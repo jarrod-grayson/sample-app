@@ -93,9 +93,9 @@ stages:
           script: 'Get-Content -Path "C:\\temp\\results\\results.xml" | Out-File -FilePath "C:\\temp\\results\\results_encode.xml" -Encoding ASCII'
 
       - task: PublishTestResults@2
-        displayName: 'Publish Test Results C:\temp\results\results.xml'
+        displayName: 'Publish Test Results'
         inputs:
-          testResultsFiles: 'C:\temp\results\results.xml'
+          testResultsFiles: 'C:\temp\results\results_encode.xml'
 
 - stage: Deploy_to_Staging
   displayName: Deploy_to_Staging
