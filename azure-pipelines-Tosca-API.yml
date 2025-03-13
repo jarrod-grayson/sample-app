@@ -90,12 +90,45 @@ stages:
       - task: PowerShell@2
         inputs:
           targetType: 'inline'
-          script: 'Get-Content -Path "C:\\temp\\results\\results.xml" | Out-File -FilePath "C:\\temp\\results\\results_encode.xml" -Encoding ASCII'
+          script: |
+            $inputPath = "C:\temp\results\results.xml"
+            $outputPath = "C:\temp\results\results_encode.xml"
+
+            if (Test-Path $inputPath) {
+                # Read as raw bytes
+                $bytes = [System.IO.File]::ReadAllBytes($inputPath)
+
+                # Check if first three bytes match a BOM
+                if ($bytes.Length -ge 3 -and $bytes[0] -eq 0xEF -and $bytes[1] -eq 0xBB -and $bytes[2] -eq 0xBF) {
+                    Write-Host "Detected UTF-8 BOM, removing..."
+                    $bytes = $bytes[3..$bytes.Length]  # Strip BOM
+                }
+
+                # Convert bytes to string using UTF-8 decoding
+                $content = [System.Text.Encoding]::UTF8.GetString($bytes)
+
+                # Remove any hidden special characters (like your unexpected 195, 175, 194)
+                $content = $content -replace "[^\u0000-\u007F]+", ""  # Removes non-ASCII hidden characters
+
+                # Force write using UTF-8 without BOM
+                $utf8NoBomEncoding = New-Object System.Text.UTF8Encoding($false)
+                [System.IO.File]::WriteAllText($outputPath, $content, $utf8NoBomEncoding)
+
+                Write-Host "File successfully cleaned and saved!"
+            } else {
+                Write-Host "Input file not found!"
+            }
+        displayName: 'Clean Results XML File'
 
       - task: PublishTestResults@2
         displayName: 'Publish Test Results'
         inputs:
           testResultsFiles: 'C:\temp\results\results_encode.xml'
+
+      - script: |
+          python C:\temp\results\parse_results.py
+        displayName: 'Parse Test Results & Store in SQLite DB'
+        continueOnError: true  # Prevents the pipeline from failing if the script errors out
 
 - stage: Deploy_to_Staging
   displayName: Deploy_to_Staging
