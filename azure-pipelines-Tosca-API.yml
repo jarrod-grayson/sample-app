@@ -125,10 +125,10 @@ stages:
         inputs:
           testResultsFiles: 'C:\temp\results\results_encode.xml'
 
-      - script: |
-          python C:\temp\results\parse_results.py
-        displayName: 'Parse Test Results & Store in SQLite DB'
-        continueOnError: true  # Prevents the pipeline from failing if the script errors out
+      #- script: |
+          #python C:\temp\results\parse_results.py
+        #displayName: 'Parse Test Results & Store in SQLite DB'
+        #continueOnError: true  # Prevents the pipeline from failing if the script errors out
 
 - stage: Deploy_to_Staging
   displayName: Deploy_to_Staging
